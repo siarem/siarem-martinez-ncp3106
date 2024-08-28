@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <!-- Google Fonts Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Roboto";
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+
+      header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: transparent;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      header .left,
+      header .center,
+      header .right {
+        flex: 1;
+        text-align: center;
+      }
+
+      header .center {
+        flex: 2;
+      }
+
+      button {
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-family: "Roboto";
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #333;
+      }
+
+      main {
+        width: 100%;
+        max-width: 1200px;
+        text-align: center;
+        margin-top: 100px;
+      }
+
+      .intro {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 50px;
+        background-color: white;
+        border-radius: 20px;
+      }
+
+      .intro h2 {
+        font-size: 5em;
+        line-height: 1.2em;
+        font-family: "Roboto";
+        margin: 0;
+        position: static;
+        z-index: 2;
+        color: black;
+        left: 100px;
+        top: 100px;
+        font-weight: bold;
+        text-align: left;
+        max-width: 600%;
+      }
+
+      .intro img {
+        width: 50%;
+        height: auto;
+        z-index: 1;
+        max-width: 600px;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-left: auto;
+      }
+
+      .description {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      .description div {
+        width: 45%;
+        text-align: left;
+        font-family: "Roboto";
+        font-size: 1.5em;
+      }
+
+      /* Black Background Section */
+      .black-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        font-family: "Roboto";
+        color: white;
+        padding: 50px;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        border-radius: 20px;
+      }
+
+      .project {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #333;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .project img {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+
+      .project .project-details {
+        text-align: left;
+      }
+
+      .project h3 {
+        margin: 0;
+        font-size: 1em;
+        margin-bottom: 10px;
+      }
+
+      .project p {
+        margin: 0;
+        font-size: 0.8em;
+        line-height: 1.5em;
+        color: white;
+      }
+
+      /* About Me Modal */
+      .about-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        z-index: 2000;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .about-modal-content {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #212121;
+        border-radius: 10px;
+        text-align: left;
+      }
+
+      .about-modal h2 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        font-family: "Roboto";
+      }
+
+      .about-modal p {
+        line-height: 1.6em;
+        margin-bottom: 20px;
+      }
+
+      .about-modal hr {
+        border: none;
+        height: 1px;
+        background-color: #444;
+        margin: 30px 0;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .close-button:hover {
+        color: #ccc;
+      }
+
+      /* Contact Modal */
+      .contact-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        z-index: 2000;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .contact-modal-content {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #212121;
+        border-radius: 10px;
+        text-align: left;
+      }
+
+      .contact-modal h2 {
+        font-size: 3em;
+        font-family: "Roboto";
+        margin-bottom: 20px;
+      }
+
+      .contact-modal p {
+        line-height: 1.6em;
+        margin-bottom: 20px;
+      }
+
+      .contact-modal a {
+        color: white;
+        text-decoration: none;
+        margin: 10px 0;
+        display: inline-block;
+      }
+
+      .contact-modal a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="left">
+        <button class="available-button" onclick="toggleContact()">
+          Available for work
+        </button>
+      </div>
+      <div class="center">
+        <a href="#" style="text-decoration: none; color: black">
+          <h1>Christian Rei</h1>
+        </a>
+      </div>
+      <div class="right">
+        <button class="about-button" onclick="toggleAbout()">About Me</button>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <h2>
+          A BACK END<br />
+          DEVELOPER<br />
+          IN TRAINING
+        </h2>
+        <img src="pic.png" alt="Profile Picture" />
+      </section>
+      <section class="description">
+        <div>
+          I try to build digital platforms that keep the user connected.
+        </div>
+        <div>
+          In a digital world where the focus often lies on an efficient user
+          experience, I want to add an extra layer of joy. I believe that is
+          what leaves a lasting impression.
+        </div>
+      </section>
+
+      <!-- Black Background Section -->
+      <section class="black-section">
+        <h2>Projects</h2>
+        <div class="project">
+          <img src="2.png" alt="Project 1 Image" />
+          <div class="project-details">
+            <h3>GAME: Code Quest Adventure: Python Playground</h3>
+            <p>
+              A Python-based game where players solve coding challenges to
+              advance through levels. Aimed at teaching programming concepts in
+              an engaging and interactive way.<br />
+              <a
+                href="https://docs.google.com/document/d/1H_N24Jq4JpZ3r9shEJ_i2chHGLFP-Isobivl1paS0Jg/edit"
+                target="_blank"
+                style="text-decoration: underline; color: inherit"
+              >
+                View My Project
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="1.png" alt="Project 2 Image" />
+          <div class="project-details">
+            <h3>GAME: Ten Seconds</h3>
+            <p>
+              An adrenaline-pumping game where you have only ten seconds to
+              complete each level. Fast-paced and exciting, designed to test
+              your quick thinking and reflexes.<br />
+              <a
+                href="https://docs.google.com/document/d/1H_N24Jq4JpZ3r9shEJ_i2chHGLF"
+                target="_blank"
+                style="text-decoration: underline; color: inherit"
+              >
+                View My Project
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="3.png" alt="Project 3 Image" />
+          <div class="project-details">
+            <h3>WEBSITE: BIONOTE</h3>
+            <p>
+              A website that serves as an interactive and informative platform
+              for biology students. It includes educational content, quizzes,
+              and interactive diagrams to help students learn effectively.<br />
+              <a
+                href="3.png"
+                target="_blank"
+                style="text-decoration: underline; color: inherit"
+              >
+                View My Project
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="project">
+          <img src="5.png" alt="Project 4 Image" />
+          <div class="project-details">
+            <h3>WEBSITE: FORMATIVE BOOTSTRAP</h3>
+            <p>
+              A responsive and visually appealing website built using Bootstrap.
+              It showcases various design patterns and techniques for creating
+              modern web interfaces.<br />
+              <a
+                href="https://siarem.github.io/siarem-martinez_ncp3106/"
+                target="_blank"
+                style="text-decoration: underline; color: inherit"
+              >
+                View My Project
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- About Me Modal -->
+    <div class="about-modal" id="aboutModal">
+      <div class="about-modal-content">
+        <button class="close-button" onclick="toggleAbout()">×</button>
+        <h2>PROFESSIONALLY</h2>
+        <p>
+          I am a third-year computer engineering student at the
+          <a
+            href="https://www.ue.edu.ph/mla/"
+            target="_blank"
+            style="text-decoration: underline; color: inherit"
+            >University of the East</a
+          >. I have a strong foundation in programming and a good understanding
+          of both hardware and software issues. Additionally, I have experience
+          in game development, applying my technical skills to create and
+          improve games. My diverse expertise reflects a commitment to both
+          solving complex problems and exploring creative solutions in the field
+          of computer engineering.
+        </p>
+        <hr />
+        <h2>PERSONALLY</h2>
+        <p>
+          Besides being a student, I have a lot of other interests. I love
+          playing video games, watching movies, and exploring new things. I also
+          enjoy doing DIY projects, even if I’m still learning and not always
+          perfect at them.
+        </p>
+        <p>
+          <a
+            href="resume.pdf"
+            target="_blank"
+            style="text-decoration: underline; color: inherit"
+          >
+            View My Resume
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contactModal">
+      <div class="contact-modal-content">
+        <button class="close-button" onclick="toggleContact()">×</button>
+        <h2>CONTACT ME</h2>
+        <p>
+          I am currently available for work and would love to discuss how I can
+          help with your project. Whether it's back-end development, Python
+          programming, or just a chat about the latest in tech, feel free to
+          reach out!
+        </p>
+        <p>
+          Email:
+          <a href="martinez.christianrei@ue.edu.com"
+            >martinez.christianrei@ue.edu.com</a
+          >
+        </p>
+        <p>Phone: 0998-999-2013</p>
+        <p></p>
+        <hr />
+        <h3>You can also find me on:</h3>
+        <p>
+          <a href="https://www.facebook.com/GreekFreek34/" target="_blank"
+            >Facebook</a
+          >
+          |
+          <a href="https://www.instagram.com/_siaremm/" target="_blank"
+            >Instagram</a
+          >
+          |
+          <a
+            href="https://www.tiktok.com/@siarem?_t=8oXIPg6VWPS&_r=1"
+            target="_blank"
+            >TikTok</a
+          >
+          |
+          <a href="https://github.com/siarem" target="_blank">GitHub</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function toggleAbout() {
+        var aboutModal = document.getElementById("aboutModal");
+        aboutModal.style.display =
+          aboutModal.style.display === "block" ? "none" : "block";
+      }
+
+      function toggleContact() {
+        var contactModal = document.getElementById("contactModal");
+        contactModal.style.display =
+          contactModal.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </body>
+</html>
